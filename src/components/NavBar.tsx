@@ -7,13 +7,17 @@ const Navbar: React.FC = () => {
     <nav className="navbar">
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/" className="navbar-link">
+            Home
+          </Link>
         </li>
         {/* <li>
-          <Link to="/register">Register</Link>
+          <Link to="/register" className="navbar-link">Register</Link>
         </li> */}
         <li>
-          <Link to="/login">Login</Link>
+          <Link to="/login" className="navbar-link">
+            LOGIN
+          </Link>
         </li>
       </ul>
     </nav>

@@ -1,17 +1,23 @@
 #root {
   max-width: 100%;
   margin: 0 auto;
+  background-color: #191942;
+  color: #ccc;
   /* padding: 1rem; */
   /* text-align: center; */
 }
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap");
+
 * {
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 .navbar {
   background-color: #191942;
-  color: white;
+  color: #fee60c;
   padding: 10px;
   border-bottom: solid 1px;
 }
@@ -23,24 +29,30 @@
   font-size: 25px;
   font-weight: bold;
   list-style: none;
-  color: #fee;
+
+  height: 38px;
 }
-.navbar ul li {
-  margin: 10px;
+.navbar-link {
   color: #fee60c;
+  text-decoration: none;
+  font-size: 30px;
+  padding: 20px;
 }
 .navbar ul li:first-child {
   margin-right: auto;
 }
 
 /* ====================TODO========= */
-
+.loginContainer {
+  height: 87vh;
+}
 .login-page {
-  width: 300px;
-  margin: 20px auto;
+  width: 400px;
+  margin: 100px auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-size: 30px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 

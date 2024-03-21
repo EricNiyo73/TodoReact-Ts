@@ -13,11 +13,14 @@
   --light-Dark-Grayish-Blue: hsl(236, 9%, 61%);
   --light-Very-Dark-Grayish-Blue: hsl(235, 19%, 35%);
 }
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 .App {
@@ -86,7 +89,12 @@
   grid-template-columns: repeat(4, 1fr);
   padding: 1rem;
 }
-
+.button-add {
+  font-size: 30px;
+  background-color: #fee60c;
+  color: #191942;
+  font-weight: bold;
+}
 .App .on_top span {
   cursor: pointer;
   color: var(--Light-Grayish-Blue);
@@ -151,19 +159,23 @@ input[type="checkbox"]:hover {
   right: 0;
   top: 20%;
   margin-bottom: 2rem;
-  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   padding: 1rem;
   margin: 0 auto;
   transition: display 10s ease-in-out 0.3s;
   flex-direction: column;
   width: 50%;
-  background-color: var(--Very-Dark-Blue);
+  background-color: #191942;
   border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
 .App .addTodo form div {
   display: flex;
   flex-direction: column;
+}
+.title-dec {
+  display: flex;
+  gap: 13px;
 }
 
 .App .addTodo form input,
@@ -181,12 +193,14 @@ input[type="checkbox"]:hover {
 
 .App .addTodo form button {
   width: 20%;
-  color: white;
+  color: #191942;
   border: none;
   border-radius: 5px;
   outline: none;
   padding: 1rem;
-  background-color: var(--light-Very-Dark-Grayish-Blue);
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #fee60c;
 }
 .App .addTodo h1 {
   color: var(--light-Very-Dark-Grayish-Blue);
