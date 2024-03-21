@@ -1,0 +1,83 @@
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+  /* padding: 1rem; */
+  /* text-align: center; */
+}
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+.navbar {
+  background-color: #191942;
+  color: white;
+  padding: 10px;
+  border-bottom: solid 1px;
+}
+
+.navbar ul {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0px auto;
+  font-size: 25px;
+  font-weight: bold;
+  list-style: none;
+  color: #fee;
+}
+.navbar ul li {
+  margin: 10px;
+  color: #fee60c;
+}
+.navbar ul li:first-child {
+  margin-right: auto;
+}
+
+/* ====================TODO========= */
+
+.login-page {
+  width: 300px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-page h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #fee60c;
+  color: #191942;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.othernavigate {
+  display: flex;
+  gap: 10px;
+}

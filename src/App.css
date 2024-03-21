@@ -1,0 +1,221 @@
+:root {
+  --Very-Dark-Blue: hsl(235, 21%, 11%);
+  --Very-Dark-Desaturated-Blue: hsl(235, 24%, 19%);
+  --Light-Grayish-Blue: white;
+  --Light-Grayish-Blue-hover: hsl(236, 33%, 92%);
+  --Dark-Grayish-Blue: hsl(234, 11%, 52%);
+  --Very-Dark-Grayish-Blue: hsl(233, 14%, 35%);
+  --very-Dark-Grayish-Blue: hsl(237, 14%, 26%);
+
+  --Very-Light-Gray: hsl(0, 0%, 98%);
+  --Very-Light-Grayish-Blue: hsl(236, 33%, 92%);
+  --Light-Grayish-Blue: hsl(233, 11%, 84%);
+  --light-Dark-Grayish-Blue: hsl(236, 9%, 61%);
+  --light-Very-Dark-Grayish-Blue: hsl(235, 19%, 35%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  display: grid;
+  grid-template-rows: 5fr 7fr;
+  height: 100vh;
+  position: relative;
+  background-color: #191942;
+}
+
+.App .on_top {
+  position: absolute;
+  margin: 0 auto;
+  left: 0%;
+  width: 50%;
+  right: 0%;
+  top: 20%;
+}
+
+.App .on_top .name {
+  display: flex;
+  justify-content: space-between;
+}
+.App .on_top h1 {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white;
+}
+.App .on_top button {
+  padding: 1rem;
+  outline: none;
+  width: 100%;
+  margin: 1rem 0;
+  border: none;
+  border-radius: 5px;
+}
+
+.App .on_top img {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+.App .list {
+  background-color: var(--Very-Dark-Desaturated-Blue);
+  border-radius: 5px;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+
+.App .list ul {
+  list-style-type: none;
+  width: 100%;
+}
+
+.App .list ul li {
+  padding: 1rem;
+  border-bottom: 8px solid#fee60c;
+  color: var(--Light-Grayish-Blue);
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
+  border-bottom: 1px solid rgb(56, 55, 55);
+  font-size: 34px;
+}
+
+.App .on_top .action {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 1rem;
+}
+
+.App .on_top span {
+  cursor: pointer;
+  color: var(--Light-Grayish-Blue);
+}
+
+input[type="checkbox"]:checked {
+  background-color: red;
+  background-image: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+input[type="checkbox"]:checked::after {
+  display: block;
+}
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  margin-top: -6px;
+  background: none;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+input[type="checkbox"]:after {
+  content: url("../public/images/icon-check.svg");
+  display: none;
+}
+
+input[type="checkbox"]:hover {
+  border: 1px solid hsl(192, 100%, 67%);
+}
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid rgb(216, 216, 245);
+  margin-top: -6px;
+  background: none;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+input[type="checkbox"]:after {
+  content: url("../public/images/icon-check.svg");
+  display: none;
+}
+
+input[type="checkbox"]:hover {
+  border: 1px solid hsl(192, 100%, 67%);
+}
+
+.App .addTodo,
+.App .viewTodo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 20%;
+  margin-bottom: 2rem;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  padding: 1rem;
+  margin: 0 auto;
+  transition: display 10s ease-in-out 0.3s;
+  flex-direction: column;
+  width: 50%;
+  background-color: var(--Very-Dark-Blue);
+  border-radius: 5px;
+}
+
+.App .addTodo form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.App .addTodo form input,
+.App .addTodo form textarea {
+  outline: none;
+  border: 1px solid var(--Dark-Grayish-Blue);
+  padding: 1rem;
+  width: 100%;
+  background-color: white;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  margin: 0.5rem 0;
+  font-size: 20px;
+}
+
+.App .addTodo form button {
+  width: 20%;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  padding: 1rem;
+  background-color: var(--light-Very-Dark-Grayish-Blue);
+}
+.App .addTodo h1 {
+  color: var(--light-Very-Dark-Grayish-Blue);
+  padding: 1rem 0;
+  text-align: center;
+}
+.App .viewTodo h1 {
+  color: var(--light-Very-Dark-Grayish-Blue);
+  padding: 1rem 0;
+}
+
+.close {
+  padding: 4px 8px;
+  border-radius: 5px;
+  text-align: right;
+  color: red;
+  cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .App .on_top {
+    width: 90%;
+    top: 10%;
+  }
+
+  .App {
+    display: grid;
+    grid-template-rows: 2fr 7fr;
+    height: 100vh;
+    position: relative;
+  }
+}
