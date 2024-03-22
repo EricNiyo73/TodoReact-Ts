@@ -4,19 +4,11 @@ import { Bars } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
 import "../css/pagesstyle.css";
 import { Notify } from "notiflix";
-interface User {
-  _id: string;
-  username: string;
-  email: string;
-  password: string;
-}
 const SignUp: React.FC = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [todos, setTodos] = useState<User[]>([]);
-  const [create, setCreate] = useState<boolean>(false);
+
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -48,14 +40,13 @@ const SignUp: React.FC = () => {
       setLoading(false);
     } else {
       Notify.failure("Something went wrong please try again");
-      setError("Network Error");
+
       setLoading(false);
     }
 
     setPassword("");
     setEmail("");
     setUsername("");
-    setCreate(false);
   };
 
   return (

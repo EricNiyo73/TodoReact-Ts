@@ -23,7 +23,6 @@ const Todos: React.FC = () => {
   const [updateTitle, setUpdateTitle] = useState<string>("");
   const [updateDesc, setUpdateDesc] = useState<string>("");
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [yours, setYours] = useState<Todo | null>(null);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
