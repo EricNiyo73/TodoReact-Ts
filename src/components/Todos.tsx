@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import "../App.css";
+import { Notify } from "notiflix";
 
 interface Todo {
   _id: string;
@@ -22,16 +23,20 @@ const Todos: React.FC = () => {
   const [updateTitle, setUpdateTitle] = useState<string>("");
   const [updateDesc, setUpdateDesc] = useState<string>("");
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [yours, setYours] = useState<Todo | null>(null);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!title || !desc) return;
+    let token: any = localStorage.getItem("token");
+
     const response = await fetch(
       "https://todo-app-api-fkhb.onrender.com/api/todos/create",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: token,
         },
         body: JSON.stringify({
           title,
@@ -40,19 +45,30 @@ const Todos: React.FC = () => {
       }
     );
     if (response.status === 201) {
+      Notify.success("Todos Added successfully");
       window.location.reload();
+    } else if (response.status === 401) {
+      Notify.failure("Unauthorized ,Please Login");
+    } else if (response.status === 409) {
+      Notify.failure("This TODO already exist");
+    } else {
+      Notify.failure("Network error");
     }
-
     setTitle("");
     setDesc("");
     setCreate(false);
   }
 
   const handleRemoveTodo = async (id: string) => {
+    let token: any = localStorage.getItem("token");
+
     const response = await fetch(
       `https://todo-app-api-fkhb.onrender.com/api/todos/${id}`,
       {
         method: "DELETE",
+        headers: {
+          Authorization: token,
+        },
       }
     );
     if (response.status === 204) {
@@ -61,6 +77,8 @@ const Todos: React.FC = () => {
   };
 
   async function handleTodoClick(id: string) {
+    let token: any = localStorage.getItem("token");
+
     const response = await fetch(
       `https://todo-app-api-fkhb.onrender.com/api/todos/${id}`
     );
@@ -73,6 +91,7 @@ const Todos: React.FC = () => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          Authorization: token,
         },
         body: JSON.stringify({
           completed: !displayTodo.completed,
@@ -81,6 +100,8 @@ const Todos: React.FC = () => {
     );
 
     if (updateResponse.status === 200) {
+      Notify.success("Completed");
+
       window.location.reload();
     }
   }
@@ -90,32 +111,36 @@ const Todos: React.FC = () => {
       `https://todo-app-api-fkhb.onrender.com/api/todos/${id}`
     );
     const data = await response.json();
-    const displayTodo = data.data.Todo;
+    const displayTodo = data.data.data;
 
     setDisplay(displayTodo);
     setUpdateTitle(displayTodo.title);
     setUpdateDesc(displayTodo.desc);
   }
 
-  const handleUpdate = async () => {
-    if (display) {
-      await fetch(
-        `https://todo-app-api-fkhb.onrender.com/api/todos/${display._id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: updateTitle,
-            desc: updateDesc,
-          }),
-        }
-      );
+  const handleUpdate = async (id: any) => {
+    let token: any = localStorage.getItem("token");
 
-      setUpdateTitle("");
-      setUpdateDesc("");
-      setView(false);
+    const response = await fetch(
+      `https://todo-app-api-fkhb.onrender.com/api/todos/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+        body: JSON.stringify({
+          title: updateTitle,
+          desc: updateDesc,
+        }),
+      }
+    );
+
+    if (response.status === 200) {
+      Notify.success("Todo updated successfully");
+      //   window.location.reload();
+    } else {
+      Notify.failure("Failed to update todo");
     }
   };
 
@@ -131,7 +156,6 @@ const Todos: React.FC = () => {
   }, []);
 
   let real = active || completed ? filtered : todos;
-
   return (
     <div className="App">
       <div className="top"></div>
@@ -150,7 +174,7 @@ const Todos: React.FC = () => {
         <div className="list">
           <ul>
             {real.map((todo) => {
-              const { title, desc, _id } = todo;
+              const { title, _id } = todo;
               return (
                 <li key={_id}>
                   <span onClick={() => handleTodoClick(todo._id)}>
@@ -295,30 +319,26 @@ const Todos: React.FC = () => {
           Close
         </h2>
 
-        <form onSubmit={handleUpdate}>
+        <form>
           <div>
             <label htmlFor="title">Title</label>
             <input
               type="text"
               placeholder="Enter title here..."
               value={updateTitle}
-              onChange={function (e) {
-                setUpdateTitle(e.target.value);
-              }}
+              onChange={(e) => setUpdateTitle(e.target.value)}
             />
           </div>
           <div>
             <label htmlFor="description">Description</label>
             <textarea
-              placeholder="Enter description here..."
+              placeholder="Enter your updates"
               value={updateDesc}
-              onChange={function (e) {
-                setUpdateDesc(e.target.value);
-              }}
+              onChange={(e) => setUpdateDesc(e.target.value)}
             />
           </div>
           <div>
-            <button>Update</button>
+            <button onClick={() => handleUpdate(display?._id)}>Update</button>
           </div>
         </form>
       </div>

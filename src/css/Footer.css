@@ -1,0 +1,21 @@
+.footer {
+  background-color: #191942;
+  padding: 20px 0;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: #fee60c;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}

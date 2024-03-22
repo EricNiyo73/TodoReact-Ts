@@ -1,10 +1,13 @@
 import React from "react";
+import "../css/Footer.css";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
-    <div>
-      <h4>footers</h4>
-    </div>
+    <footer className="footer">
+      <div className="container">
+        <p>&copy; {new Date().getFullYear()} Todo App. All rights reserved.</p>
+      </div>
+    </footer>
   );
 };
 
