@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiFillDelete, AiFillEdit, AiOutlineClose } from "react-icons/ai";
 import "../App.css";
 import { Notify } from "notiflix";
 
@@ -85,7 +85,7 @@ const Todos: React.FC = () => {
     const displayTodo = data.data.data;
 
     const updateResponse = await fetch(
-      `https://todo-app-api-fkhb.onrender.com/api/todos/${id}`,
+      `https://todo-app-api-fkhb.onrender.com/api/todos/update/${id}`,
       {
         method: "PUT",
         headers: {
@@ -117,11 +117,30 @@ const Todos: React.FC = () => {
     setUpdateDesc(displayTodo.desc);
   }
 
-  const handleUpdate = async (id: any) => {
+  const navigateToUpdateForm = (id: string) => {
+    setView(true);
+    displaySingle(id);
+  };
+  useEffect(() => {
+    async function fetchTodos() {
+      const response = await fetch(
+        "https://todo-app-api-fkhb.onrender.com/api/todos"
+      );
+      const data = await response.json();
+      setTodos(data.data.data);
+    }
+    fetchTodos();
+  }, []);
+
+  const handleUpdate = async (
+    id: any,
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
     let token: any = localStorage.getItem("token");
 
     const response = await fetch(
-      `https://todo-app-api-fkhb.onrender.com/api/todos/${id}`,
+      `https://todo-app-api-fkhb.onrender.com/api/todos/update/${id}`,
       {
         method: "PUT",
         headers: {
@@ -134,31 +153,19 @@ const Todos: React.FC = () => {
         }),
       }
     );
-
+    await response.json();
     if (response.status === 200) {
       Notify.success("Todo updated successfully");
-      //   window.location.reload();
+      window.location.reload();
+    } else if (response.status === 401) {
+      Notify.failure("Please login");
     } else {
       Notify.failure("Failed to update todo");
     }
   };
-
-  useEffect(() => {
-    async function fetchTodos() {
-      const response = await fetch(
-        "https://todo-app-api-fkhb.onrender.com/api/todos"
-      );
-      const data = await response.json();
-      setTodos(data.data.data);
-    }
-    fetchTodos();
-  }, []);
-
   let real = active || completed ? filtered : todos;
   return (
     <div className="App">
-      <div className="top"></div>
-      <div className="bottom"></div>
       <div className="on_top">
         <div className="name">
           <div>
@@ -167,7 +174,7 @@ const Todos: React.FC = () => {
         </div>
         <div>
           <button onClick={() => setCreate(true)} className="button-add">
-            Click here to add a TODO
+            ADD NEW TODO
           </button>
         </div>
         <div className="list">
@@ -176,20 +183,17 @@ const Todos: React.FC = () => {
               const { title, _id } = todo;
               return (
                 <li key={_id}>
-                  <span onClick={() => handleTodoClick(todo._id)}>
-                    <input
-                      type="checkbox"
-                      name="complete"
-                      checked={todo.completed}
-                      id="complete"
-                    />{" "}
-                  </span>
-                  <div className="title-dec">
+                  <span className="first">
+                    <span>
+                      <input
+                        type="checkbox"
+                        name="complete"
+                        checked={todo.completed}
+                        onChange={() => handleTodoClick(todo._id)}
+                        id="complete"
+                      />
+                    </span>
                     <span
-                      onClick={() => {
-                        setView(true);
-                        displaySingle(todo._id);
-                      }}
                       style={{
                         textDecoration: todo.completed
                           ? "line-through"
@@ -198,7 +202,8 @@ const Todos: React.FC = () => {
                     >
                       {title}
                     </span>
-                    {/* <span
+                  </span>
+                  {/* <span
                       onClick={() => {
                         setView(true);
                         displaySingle(todo._id);
@@ -211,9 +216,18 @@ const Todos: React.FC = () => {
                     >
                       {desc}
                     </span> */}
-                  </div>
-                  <span onClick={() => handleRemoveTodo(todo._id)}>
-                    <AiOutlineClose />
+                  <span className="icons">
+                    <span
+                      onClick={() => {
+                        setView(true);
+                        navigateToUpdateForm(todo._id);
+                      }}
+                    >
+                      <AiFillEdit />
+                    </span>
+                    <span onClick={() => handleRemoveTodo(todo._id)}>
+                      <AiFillDelete />
+                    </span>
                   </span>
                 </li>
               );
@@ -337,7 +351,13 @@ const Todos: React.FC = () => {
             />
           </div>
           <div>
-            <button onClick={() => handleUpdate(display?._id)}>Update</button>
+            <button
+              onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
+                handleUpdate(display?._id, event)
+              }
+            >
+              Update
+            </button>
           </div>
         </form>
       </div>

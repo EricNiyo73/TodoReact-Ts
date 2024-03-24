@@ -79,11 +79,19 @@
   border-bottom: 8px solid#fee60c;
   color: var(--Light-Grayish-Blue);
   display: grid;
-  grid-template-columns: 1fr 10fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   border-bottom: 1px solid rgb(56, 55, 55);
   font-size: 34px;
 }
-
+.first {
+  display: flex;
+  gap: 3rem;
+}
+.icons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 3rem;
+}
 .App .on_top .action {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -118,12 +126,6 @@ input[type="checkbox"] {
   align-items: center;
   height: 25px;
   cursor: pointer;
-  border-radius: 50%;
-}
-
-input[type="checkbox"]:after {
-  content: url("../public/images/icon-check.svg");
-  display: none;
 }
 
 input[type="checkbox"]:hover {
@@ -141,7 +143,6 @@ input[type="checkbox"] {
   align-items: center;
   height: 25px;
   cursor: pointer;
-  border-radius: 50%;
 }
 input[type="checkbox"]:after {
   content: url("../public/images/icon-check.svg");
@@ -172,10 +173,6 @@ input[type="checkbox"]:hover {
 .App .addTodo form div {
   display: flex;
   flex-direction: column;
-}
-.title-dec {
-  display: flex;
-  gap: 13px;
 }
 
 .App .addTodo form input,
