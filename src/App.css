@@ -1,18 +1,3 @@
-:root {
-  --Very-Dark-Blue: hsl(235, 21%, 11%);
-  --Very-Dark-Desaturated-Blue: hsl(235, 24%, 19%);
-  --Light-Grayish-Blue: white;
-  --Light-Grayish-Blue-hover: hsl(236, 33%, 92%);
-  --Dark-Grayish-Blue: hsl(234, 11%, 52%);
-  --Very-Dark-Grayish-Blue: hsl(233, 14%, 35%);
-  --very-Dark-Grayish-Blue: hsl(237, 14%, 26%);
-
-  --Very-Light-Gray: hsl(0, 0%, 98%);
-  --Very-Light-Grayish-Blue: hsl(236, 33%, 92%);
-  --Light-Grayish-Blue: hsl(233, 11%, 84%);
-  --light-Dark-Grayish-Blue: hsl(236, 9%, 61%);
-  --light-Very-Dark-Grayish-Blue: hsl(235, 19%, 35%);
-}
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap");
 
@@ -40,10 +25,6 @@
   top: 20%;
 }
 
-.App .on_top .name {
-  display: flex;
-  justify-content: space-between;
-}
 .App .on_top h1 {
   font-size: 1.5em;
   font-weight: bold;
@@ -58,13 +39,8 @@
   border-radius: 5px;
 }
 
-.App .on_top img {
-  width: 2rem;
-  height: 2rem;
-  cursor: pointer;
-}
 .App .list {
-  background-color: var(--Very-Dark-Desaturated-Blue);
+  background-color: rgb(18, 18, 45);
   border-radius: 5px;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
@@ -76,11 +52,10 @@
 
 .App .list ul li {
   padding: 1rem;
-  border-bottom: 8px solid#fee60c;
-  color: var(--Light-Grayish-Blue);
+  border: 3px solid#fee60c;
+  border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  border-bottom: 1px solid rgb(56, 55, 55);
   font-size: 34px;
 }
 .first {
@@ -105,7 +80,6 @@
 }
 .App .on_top span {
   cursor: pointer;
-  color: var(--Light-Grayish-Blue);
 }
 
 input[type="checkbox"]:checked {
@@ -132,8 +106,6 @@ input[type="checkbox"]:hover {
   border: 1px solid hsl(192, 100%, 67%);
 }
 input[type="checkbox"] {
-  appearance: none;
-  -webkit-appearance: none;
   border: 1px solid rgb(216, 216, 245);
   margin-top: -6px;
   background: none;
@@ -145,7 +117,6 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 input[type="checkbox"]:after {
-  content: url("../public/images/icon-check.svg");
   display: none;
 }
 
@@ -178,7 +149,7 @@ input[type="checkbox"]:hover {
 .App .addTodo form input,
 .App .addTodo form textarea {
   outline: none;
-  border: 1px solid var(--Dark-Grayish-Blue);
+  border: 1px solid hsl(234, 11%, 52%);
   padding: 1rem;
   width: 100%;
   background-color: white;
@@ -200,12 +171,12 @@ input[type="checkbox"]:hover {
   background-color: #fee60c;
 }
 .App .addTodo h1 {
-  color: var(--light-Very-Dark-Grayish-Blue);
+  color: hsl(233, 11%, 84%);
   padding: 1rem 0;
   text-align: center;
 }
 .App .viewTodo h1 {
-  color: var(--light-Very-Dark-Grayish-Blue);
+  color: hsl(233, 11%, 84%);
   padding: 1rem 0;
 }
 

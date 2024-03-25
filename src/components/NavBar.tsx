@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import "../css/pagesstyle.css";
 
 const Navbar: React.FC = () => {
-  // const logout = () => {
-  //   localStorage.removeItem("isLoggedIn");
-  //   localStorage.removeItem("userLoggedIn");
-  //   localStorage.removeItem("token");
-  //   return (window.location.href = "/");
-  // };
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+  const logout = () => {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userLoggedIn");
+    localStorage.removeItem("token");
+    window.location.href = "/";
+  };
+
   return (
     <nav className="navbar">
       <ul>
@@ -17,14 +20,17 @@ const Navbar: React.FC = () => {
             Home
           </Link>
         </li>
-        {/* <li>
-          <Link to="/register" className="navbar-link">Register</Link>
-        </li> */}
-        <li>
-          <Link to="/login" className="navbar-link">
-            LOGIN
-          </Link>
-        </li>
+        {isLoggedIn ? (
+          <li onClick={logout}>
+            <span className="navbar-link">LOGOUT</span>
+          </li>
+        ) : (
+          <li>
+            <Link to="/login" className="navbar-link">
+              LOGIN
+            </Link>
+          </li>
+        )}
       </ul>
     </nav>
   );

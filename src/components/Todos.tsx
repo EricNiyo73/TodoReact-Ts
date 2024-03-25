@@ -167,11 +167,6 @@ const Todos: React.FC = () => {
   return (
     <div className="App">
       <div className="on_top">
-        <div className="name">
-          <div>
-            <h1>TODO</h1>
-          </div>
-        </div>
         <div>
           <button onClick={() => setCreate(true)} className="button-add">
             ADD NEW TODO
