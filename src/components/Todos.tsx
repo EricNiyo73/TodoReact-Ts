@@ -71,7 +71,12 @@ const Todos: React.FC = () => {
       }
     );
     if (response.status === 204) {
+      Notify.success("Todo deleted successfully");
       window.location.reload();
+    } else if (response.status === 401) {
+      Notify.failure("Unauthorized, Please Login");
+    } else {
+      Notify.failure("Network error");
     }
   };
 
@@ -100,8 +105,11 @@ const Todos: React.FC = () => {
 
     if (updateResponse.status === 200) {
       Notify.success("Completed");
-
       window.location.reload();
+    } else if (response.status === 401) {
+      Notify.failure("Unauthorized, Please Login");
+    } else {
+      Notify.failure("Network error");
     }
   }
 
