@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AiFillDelete, AiFillEdit, AiOutlineClose } from "react-icons/ai";
+import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import "../App.css";
 import { Notify } from "notiflix";
 
